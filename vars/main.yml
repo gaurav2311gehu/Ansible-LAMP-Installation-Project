@@ -1,0 +1,4 @@
+---
+apache_package: httpd
+mysql_package: mariadb-server
+doc_root: /var/www/html
