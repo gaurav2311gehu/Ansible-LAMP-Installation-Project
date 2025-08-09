@@ -1,0 +1,26 @@
+---
+- name: Install Apache
+  yum:
+    name: "{{ apache_package }}"
+    state: present
+  notify: Restart Apache
+
+- name: Install PHP packages
+  yum:
+    name: "{{ php_packages }}"
+    state: present
+  notify: Restart Apache
+
+- name: Install MySQL
+  yum:
+    name: "{{ mysql_package }}"
+    state: present
+  notify: Restart MySQL
+
+- name: Deploy index.php
+  template:
+    src: index.php.j2
+    dest: "{{ doc_root }}/index.php"
+    owner: apache
+    group: apache
+    mode: '0644'
